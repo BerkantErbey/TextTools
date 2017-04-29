@@ -1,13 +1,22 @@
-#include <stdio.h>
+/*#################################### Includes ########################################*/
+#include <stdio.h>/*printf,scanf,fscanf,fprintf,fopen,fclose*/
 #include <stdlib.h>/*free,calloc,malloc*/
+/*######################################################################################*/
 
+/*#################################### Defines ########################################*/
 
 #define MAX_PATH 1024
 #define MAX_FILENAME 128
-void ASCIItoText();
+
+/*######################################################################################*/
+
+/*################################## Function Prototypes ##############################*/
+
+void ASCIITexttoBinary();
 void printProcList();
 void callProc(int processNo);
 
+/*######################################################################################*/
 
 int main(int argc, char const *argv[])
 {
@@ -29,10 +38,10 @@ void printProcList()
 {
 	
 	printf("Hi,please select the process below the list\n");
-	printf("1. ASCII to Text\n");
+	printf("1. ASCII Text to Decimal\n");
 
 }
-void ASCIItoText()
+void ASCIITexttoBinary()
 {
 	FILE *inPtr;
 	FILE *outPtr;
@@ -48,7 +57,12 @@ void ASCIItoText()
 
 	
 	PROCSTART:printf("Enter the path\n");
-	fgets(textFilePath,256,stdin);
+	scanf("%s",textFilePath);
+	printf("%s",textFilePath);
+
+	//sscanf(stdin,"%s",textFilePath);
+	//fgets(textFilePath,sizeof(textFilePath)-1,stdin);
+	//sprintf(textFilePath,"%s ",stdout);
 	//puts(textFilePath);
 	if((inPtr = fopen(textFilePath,"r")) == NULL)
 	{
@@ -66,9 +80,10 @@ void ASCIItoText()
 	}
 	else
 	{
-		printf("Please enter the output file name\n");
-		fgets(outFileName,sizeof(outFileName),stdin);
-		puts(outFileName);
+		printf("\nPlease enter the output file name\n");
+		
+		scanf("%s",outFileName);
+		printf("%s",outFileName);
 		if((outPtr = fopen(outFileName,"w")) == NULL)
 		{
 			printf("This file can't open.\nProgram Closing...\n");
@@ -101,13 +116,15 @@ void ASCIItoText()
 }
 void callProc(int processNo)
 {
-	/*switch(processNo)
+	switch(processNo)
 	{
-		case 1: ASCIItoText(); break;
-	}*/
-	if(processNo == 1)
-		ASCIItoText();
-
+		case 1: ASCIITexttoBinary(); break;
+		case 2:
+	}
+	
 
 	return ;
 }
+/*######################################################################################*/
+/*											END											*/
+/*######################################################################################*/
